@@ -1,0 +1,11 @@
+---
+title: "daie_ca4_data.sqlite"
+author: "Conor Crean"
+date: '`r Sys.Date()`'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
