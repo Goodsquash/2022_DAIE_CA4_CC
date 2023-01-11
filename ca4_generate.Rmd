@@ -9,3 +9,89 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+
+
+
+## Clear console on each execute and set chunk default to not show code
+```{r}
+
+cat('\014')
+```
+
+
+## Download and load libraries
+```{r}
+if(!require("DBI"))
+  install.packages("DBI")
+if(!require("dplyr"))
+  install.packages("dplyr")
+# if(!require("readr"))
+#   install.packages("readr")
+
+
+library(DBI)
+#library(readr)
+library(dplyr)
+
+
+```
+
+
+
+
+
+# Connect (and create) a new local SQLite DB
+```{r}
+
+conn <- dbConnect(RSQLite::SQLite(), "")
+```
+
+## Establish a connection to the MySQL DB
+```{r}
+conn = dbConnect(RMySQL::MySQL(),
+                 dbname = 'sql8589818',
+                 host = 'sql8.freesqldatabase.com',
+                 port = 3306,
+                 user = 'sql8589818',
+                 password = rstudioapi :: askForPassword("Enter database password"))
+
+
+
+```
+
+
+
+
+
+
+# Test the DB
+```{r}
+
+
+```
+
+
+
+# Query and store the results
+
+
+
+
+
+# Execute a query with no result
+```{r}
+
+```
+
+
+# Do NOT forget to disconnect - otherwise we may hit a remote connection limit
+
+```{r}
+
+
+
+dbDisconnect(conn)
+
+
+```
+
