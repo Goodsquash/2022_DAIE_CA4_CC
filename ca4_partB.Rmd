@@ -13,6 +13,7 @@ output: html_document
 ```{r , echo=FALSE}
 library(readr)
 library(tidyverse)
+library(ggplot2)
 
 daie_ca4_game_data <- read_csv("amalgamated_game_survey_250_2022.csv")
 
@@ -24,21 +25,33 @@ summary(daie_ca4_game_data)
 
 
 ```{r , echo=FALSE}
-##install.packages("ggplot2")
 
-qqnorm(daie_ca4_game_data$avg_monthly_expenditure_dlc,
-       pch = 2, frame = FALSE)
-
-
-library(ggplot2)
+library('statsr')
 
 hist(daie_ca4_game_data$age )
 hist(daie_ca4_game_data$avg_monthly_expenditure_dlc  )  
 
-plot(age ~ avg_monthly_expenditure_dlc, data = daie_ca4_game_data)
+cor(daie_ca4_game_data$avg_monthly_expenditure_dlc, daie_ca4_game_data$age)
+cor(daie_ca4_game_data$age,daie_ca4_game_data$avg_years_playing_games)
+cor(daie_ca4_game_data$age,daie_ca4_game_data$avg_monthly_hrs_gaming)
+cor(daie_ca4_game_data$avg_years_playing_games, daie_ca4_game_data$avg_monthly_hrs_gaming)
+cor(daie_ca4_game_data$avg_monthly_hrs_gaming, daie_ca4_game_data$avg_monthly_expenditure_dlc)
+ 
 
-data.graph<-ggplot(daie_ca4_game_data, aes(x=age, y=avg_monthly_expenditure_dlc  ))+
-                     geom_point()
-data.graph
+
+plot_ss(age, avg_years_playing_games, daie_ca4_game_data)
+
+m1 <- lm(age ~ avg_years_playing_games, data = daie_ca4_game_data)
+summary(m1)
+
+
+plot(daie_ca4_game_data$age ~ daie_ca4_game_data$avg_years_playing_games)
+abline(m1)
+
+
+plot(m1$residuals ~ daie_ca4_game_data$age)
+abline(h = 0, lty = 3)  # adds a horizontal dashed line at y = 0
+
+
 
 ```
