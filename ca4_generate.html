@@ -365,8 +365,9 @@ code</h2>
 </div>
 <div id="download-and-load-libraries" class="section level2">
 <h2>Download and load libraries</h2>
-<pre class="r"><code>if(!require(&quot;DBI&quot;))
-  install.packages(&quot;DBI&quot;)</code></pre>
+<pre class="r"><code>if(!require(&quot;RMySQL&quot;))
+  install.packages(&quot;RMySQL&quot;)</code></pre>
+<pre><code>## Loading required package: RMySQL</code></pre>
 <pre><code>## Loading required package: DBI</code></pre>
 <pre class="r"><code>if(!require(&quot;dplyr&quot;))
   install.packages(&quot;dplyr&quot;)</code></pre>
@@ -379,12 +380,11 @@ code</h2>
 <pre><code>## The following objects are masked from &#39;package:base&#39;:
 ## 
 ##     intersect, setdiff, setequal, union</code></pre>
-<pre class="r"><code># if(!require(&quot;readr&quot;))
-#   install.packages(&quot;readr&quot;)
-
-
-library(DBI)
-#library(readr)
+<pre class="r"><code>if(!require(&quot;readr&quot;))
+install.packages(&quot;readr&quot;)</code></pre>
+<pre><code>## Loading required package: readr</code></pre>
+<pre class="r"><code>library(RMySQL)
+library(readr)
 library(dplyr)</code></pre>
 </div>
 <div id="connect-and-create-a-new-local-sqlite-db" class="section level1">
@@ -392,22 +392,29 @@ library(dplyr)</code></pre>
 <pre class="r"><code>conn &lt;- dbConnect(RSQLite::SQLite(), &quot;&quot;)</code></pre>
 <div id="establish-a-connection-to-the-mysql-db" class="section level2">
 <h2>Establish a connection to the MySQL DB</h2>
-<pre class="r"><code>conn = dbConnect(RMySQL::MySQL(),
-                 dbname = &#39;sql8589818&#39;,
-                 host = &#39;sql8.freesqldatabase.com&#39;,
-                 port = 3306,
-                 user = &#39;sql8589818&#39;,
-                 password = rstudioapi :: askForPassword(&quot;Enter database password&quot;))</code></pre>
+<p>#Password: L8UMyTpfJ8</p>
 </div>
 </div>
 <div id="test-the-db" class="section level1">
 <h1>Test the DB</h1>
+<pre class="r"><code>dbListTables(conn)</code></pre>
+<pre><code>## [1] &quot;Asset&quot;       &quot;Library&quot;     &quot;Project&quot;     &quot;Team_Member&quot; &quot;Work_Item&quot;</code></pre>
+<pre class="r"><code>dbListFields(conn, &quot;Asset&quot;)</code></pre>
+<pre><code>## [1] &quot;id&quot;         &quot;type&quot;       &quot;format&quot;     &quot;created_by&quot;</code></pre>
 </div>
 <div id="query-and-store-the-results" class="section level1">
 <h1>Query and store the results</h1>
 </div>
 <div id="execute-a-query-with-no-result" class="section level1">
 <h1>Execute a query with no result</h1>
+<pre class="r"><code>result &lt;- dbGetQuery(conn, &quot;SELECT * FROM Asset&quot;)
+result</code></pre>
+<pre><code>##   id         type format        created_by
+## 1  1     3D model    fbx          Modeller
+## 2  2     2D Image   jpeg         2D Artist
+## 3  3        Music    mp3    Sound Engineer
+## 4  4  Code Script    C++ Software Engineer
+## 5  5 Sound Effect    mp3    Sound Engineer</code></pre>
 </div>
 <div id="do-not-forget-to-disconnect---otherwise-we-may-hit-a-remote-connection-limit" class="section level1">
 <h1>Do NOT forget to disconnect - otherwise we may hit a remote

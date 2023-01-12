@@ -21,16 +21,16 @@ cat('\014')
 
 ## Download and load libraries
 ```{r}
-if(!require("DBI"))
-  install.packages("DBI")
+if(!require("RMySQL"))
+  install.packages("RMySQL")
 if(!require("dplyr"))
   install.packages("dplyr")
-# if(!require("readr"))
-#   install.packages("readr")
+if(!require("readr"))
+install.packages("readr")
 
 
-library(DBI)
-#library(readr)
+library(RMySQL)
+library(readr)
 library(dplyr)
 
 
@@ -47,7 +47,7 @@ conn <- dbConnect(RSQLite::SQLite(), "")
 ```
 
 ## Establish a connection to the MySQL DB
-```{r}
+```{r echo=FALSE}
 conn = dbConnect(RMySQL::MySQL(),
                  dbname = 'sql8589818',
                  host = 'sql8.freesqldatabase.com',
@@ -57,9 +57,11 @@ conn = dbConnect(RMySQL::MySQL(),
 
 
 
+
+
 ```
 
-
+#Password: L8UMyTpfJ8
 
 
 
@@ -67,6 +69,8 @@ conn = dbConnect(RMySQL::MySQL(),
 # Test the DB
 ```{r}
 
+dbListTables(conn)
+dbListFields(conn, "Asset")
 
 ```
 
@@ -80,7 +84,8 @@ conn = dbConnect(RMySQL::MySQL(),
 
 # Execute a query with no result
 ```{r}
-
+result <- dbGetQuery(conn, "SELECT * FROM Asset")
+result
 ```
 
 
