@@ -1,0 +1,44 @@
+---
+title: "PartB CA4"
+author: "Conor Crean"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+
+#Linear Regression Analysis
+
+
+##### *Data Overview*
+```{r , echo=FALSE}
+library(readr)
+library(tidyverse)
+
+daie_ca4_game_data <- read_csv("amalgamated_game_survey_250_2022.csv")
+
+#View(daie_ca4_game_data)
+head(daie_ca4_game_data,5)
+tail(daie_ca4_game_data,5)
+summary(daie_ca4_game_data)
+```
+
+
+```{r , echo=FALSE}
+##install.packages("ggplot2")
+
+qqnorm(daie_ca4_game_data$avg_monthly_expenditure_dlc,
+       pch = 2, frame = FALSE)
+
+
+library(ggplot2)
+
+hist(daie_ca4_game_data$age )
+hist(daie_ca4_game_data$avg_monthly_expenditure_dlc  )  
+
+plot(age ~ avg_monthly_expenditure_dlc, data = daie_ca4_game_data)
+
+data.graph<-ggplot(daie_ca4_game_data, aes(x=age, y=avg_monthly_expenditure_dlc  ))+
+                     geom_point()
+data.graph
+
+```
