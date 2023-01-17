@@ -5,22 +5,37 @@ date: "`r Sys.Date()`"
 output: html_document
 ---
 
+#Assumptions
+The variables chosen include age and the average monthly hours of gaming.
+My assumption that as players age the less hours that they can dedicated to playing video games due to work and other commitments.
+
+
+
 
 #Linear Regression Analysis
 
 
 ##### *Data Overview*
 ```{r , echo=FALSE}
+#Library for graphs and data presentation loaded
 library(readr)
 library(tidyverse)
 library(ggplot2)
 
+
+#data assigned to a variable
 daie_ca4_game_data <- read_csv("amalgamated_game_survey_250_2022.csv")
 
+
+#Data checked head and tails along with summary
 #View(daie_ca4_game_data)
 head(daie_ca4_game_data,5)
 tail(daie_ca4_game_data,5)
 summary(daie_ca4_game_data)
+
+
+
+
 ```
 
 
@@ -53,6 +68,16 @@ hist(m1$residuals)
 qqnorm(m1$residuals)
 qqline(m1$residuals) 
 
+
+ggplot(daie_ca4_game_data,aes(age, avg_monthly_hrs_gaming)) +
+  geom_point() +
+  geom_smooth(method='lm')
+
+
+
+ggplot(daie_ca4_game_data,aes(gender, avg_monthly_hrs_gaming)) +
+  geom_point() +
+  geom_smooth(method='lm')
 
 
 ```

@@ -11,7 +11,7 @@
 
 <meta name="author" content="Conor Crean" />
 
-<meta name="date" content="2023-01-11" />
+<meta name="date" content="2023-01-13" />
 
 <title>daie_ca4_data.sqlite</title>
 
@@ -352,7 +352,7 @@ display: none;
 
 <h1 class="title toc-ignore">daie_ca4_data.sqlite</h1>
 <h4 class="author">Conor Crean</h4>
-<h4 class="date">2023-01-11</h4>
+<h4 class="date">2023-01-13</h4>
 
 </div>
 
@@ -389,7 +389,7 @@ library(dplyr)</code></pre>
 </div>
 <div id="connect-and-create-a-new-local-sqlite-db" class="section level1">
 <h1>Connect (and create) a new local SQLite DB</h1>
-<pre class="r"><code>conn &lt;- dbConnect(RSQLite::SQLite(), &quot;&quot;)</code></pre>
+<pre class="r"><code>conn &lt;- dbConnect(RSQLite::SQLite(), &quot;Daie_ca4_create&quot;)</code></pre>
 <div id="establish-a-connection-to-the-mysql-db" class="section level2">
 <h2>Establish a connection to the MySQL DB</h2>
 <p>#Password: L8UMyTpfJ8</p>
@@ -409,12 +409,8 @@ library(dplyr)</code></pre>
 <h1>Execute a query with no result</h1>
 <pre class="r"><code>result &lt;- dbGetQuery(conn, &quot;SELECT * FROM Asset&quot;)
 result</code></pre>
-<pre><code>##   id         type format        created_by
-## 1  1     3D model    fbx          Modeller
-## 2  2     2D Image   jpeg         2D Artist
-## 3  3        Music    mp3    Sound Engineer
-## 4  4  Code Script    C++ Software Engineer
-## 5  5 Sound Effect    mp3    Sound Engineer</code></pre>
+<pre><code>## [1] id         type       format     created_by
+## &lt;0 rows&gt; (or 0-length row.names)</code></pre>
 </div>
 <div id="do-not-forget-to-disconnect---otherwise-we-may-hit-a-remote-connection-limit" class="section level1">
 <h1>Do NOT forget to disconnect - otherwise we may hit a remote
