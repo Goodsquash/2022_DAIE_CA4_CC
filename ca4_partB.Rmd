@@ -3,7 +3,10 @@ title: "PartB CA4"
 author: "Conor Crean"
 date: "`r Sys.Date()`"
 output: html_document
+ 
 ---
+
+
 
 #Assumptions
 The variables chosen include age and the average monthly hours of gaming.
@@ -11,10 +14,7 @@ My assumption that as players age the less hours that they can dedicated to play
 
 
 
-
 #Linear Regression Analysis
-
-
 ##### *Data Overview*
 ```{r , echo=FALSE}
 #Library for graphs and data presentation loaded
@@ -38,17 +38,48 @@ summary(daie_ca4_game_data)
 
 ```
 
-
+#Histograms
 ```{r , echo=FALSE}
-
 library('statsr')
 
 hist(daie_ca4_game_data$age )
-hist(daie_ca4_game_data$avg_monthly_expenditure_dlc  )  
+hist(daie_ca4_game_data$avg_monthly_expenditure_dlc  )
+```
 
+
+Variables:
+gender
+age
+top_reason_gaming
+gaming_platform
+favourite_game
+avg_monthly_hrs_gaming 
+avg_years_playing_games
+avg_monthly_expenditure_dlc
+ethnicity
+play_roblox
+use_steam
+
+
+
+#Checking Corralation cooefficent of two variables
+```{r , echo=FALSE}
 cor(daie_ca4_game_data$age, daie_ca4_game_data$avg_monthly_hrs_gaming)
+cor(daie_ca4_game_data$age, daie_ca4_game_data$avg_years_playing_games)
+cor(daie_ca4_game_data$age, daie_ca4_game_data$avg_monthly_expenditure_dlc)
+
+cor(daie_ca4_game_data$avg_monthly_hrs_gaming, daie_ca4_game_data$avg_years_playing_games)
+cor(daie_ca4_game_data$avg_monthly_hrs_gaming, daie_ca4_game_data$avg_monthly_expenditure_dlc)
 
 
+
+    
+```
+
+
+
+#Plotting data and creating linear regress model.
+```{r , echo=FALSE}
 plot_ss(age, avg_monthly_hrs_gaming, daie_ca4_game_data)
 
 m1 <- lm(age ~ avg_monthly_hrs_gaming, data = daie_ca4_game_data)
@@ -66,16 +97,12 @@ hist(m1$residuals)
 
 
 qqnorm(m1$residuals)
-qqline(m1$residuals) 
+qqline(m1$residuals)
+```
 
-
+#GGPlot of age and average monthly hours gaming
+```{r , echo=FALSE}
 ggplot(daie_ca4_game_data,aes(age, avg_monthly_hrs_gaming)) +
-  geom_point() +
-  geom_smooth(method='lm')
-
-
-
-ggplot(daie_ca4_game_data,aes(gender, avg_monthly_hrs_gaming)) +
   geom_point() +
   geom_smooth(method='lm')
 
