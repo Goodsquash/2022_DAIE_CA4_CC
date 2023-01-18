@@ -1,4 +1,7 @@
+-- !preview conn=DBI::dbConnect(RSQLite::SQLite())
 
+-- tables
+-- Table: Asset
 CREATE TABLE Asset (
     id int NOT NULL,
     type varchar(32) NOT NULL,
@@ -43,6 +46,3 @@ CREATE TABLE Work_Item (
     Team_Member_id int NOT NULL,
     CONSTRAINT Work_Item_pk PRIMARY KEY (id)
 );
-
--- End of file.
-

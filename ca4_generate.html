@@ -11,9 +11,9 @@
 
 <meta name="author" content="Conor Crean" />
 
-<meta name="date" content="2023-01-13" />
+<meta name="date" content="2023-01-18" />
 
-<title>daie_ca4_data.sqlite</title>
+<title>daie_ca4</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -350,9 +350,9 @@ display: none;
 
 
 
-<h1 class="title toc-ignore">daie_ca4_data.sqlite</h1>
+<h1 class="title toc-ignore">daie_ca4</h1>
 <h4 class="author">Conor Crean</h4>
-<h4 class="date">2023-01-13</h4>
+<h4 class="date">2023-01-18</h4>
 
 </div>
 
@@ -383,40 +383,36 @@ code</h2>
 <pre class="r"><code>if(!require(&quot;readr&quot;))
 install.packages(&quot;readr&quot;)</code></pre>
 <pre><code>## Loading required package: readr</code></pre>
-<pre class="r"><code>library(RMySQL)
+<pre class="r"><code>if(!require(&quot;DBI&quot;))
+install.packages(&quot;DBI&quot;)
+
+
+library(DBI)
+library(RMySQL)
 library(readr)
 library(dplyr)</code></pre>
 </div>
 <div id="connect-and-create-a-new-local-sqlite-db" class="section level1">
 <h1>Connect (and create) a new local SQLite DB</h1>
-<pre class="r"><code>conn &lt;- dbConnect(RSQLite::SQLite(), &quot;Daie_ca4_create&quot;)</code></pre>
-<div id="establish-a-connection-to-the-mysql-db" class="section level2">
-<h2>Establish a connection to the MySQL DB</h2>
-<p>#Password: L8UMyTpfJ8</p>
-</div>
+<pre class="r"><code>conn &lt;- dbConnect(RSQLite::SQLite(), &quot;daie_ca4_data.sqlite&quot;)</code></pre>
 </div>
 <div id="test-the-db" class="section level1">
 <h1>Test the DB</h1>
-<pre class="r"><code>dbListTables(conn)</code></pre>
-<pre><code>## [1] &quot;Asset&quot;       &quot;Library&quot;     &quot;Project&quot;     &quot;Team_Member&quot; &quot;Work_Item&quot;</code></pre>
-<pre class="r"><code>dbListFields(conn, &quot;Asset&quot;)</code></pre>
-<pre><code>## [1] &quot;id&quot;         &quot;type&quot;       &quot;format&quot;     &quot;created_by&quot;</code></pre>
+<pre class="r"><code>dbListTables(conn )</code></pre>
+<pre><code>## character(0)</code></pre>
+<pre class="r"><code>dbListTables(conn,&quot;Asset&quot; )</code></pre>
+<pre><code>## character(0)</code></pre>
 </div>
 <div id="query-and-store-the-results" class="section level1">
 <h1>Query and store the results</h1>
 </div>
 <div id="execute-a-query-with-no-result" class="section level1">
 <h1>Execute a query with no result</h1>
-<pre class="r"><code>result &lt;- dbGetQuery(conn, &quot;SELECT * FROM Asset&quot;)
-result</code></pre>
-<pre><code>## [1] id         type       format     created_by
-## &lt;0 rows&gt; (or 0-length row.names)</code></pre>
 </div>
 <div id="do-not-forget-to-disconnect---otherwise-we-may-hit-a-remote-connection-limit" class="section level1">
 <h1>Do NOT forget to disconnect - otherwise we may hit a remote
 connection limit</h1>
 <pre class="r"><code>dbDisconnect(conn)</code></pre>
-<pre><code>## [1] TRUE</code></pre>
 </div>
 
 
