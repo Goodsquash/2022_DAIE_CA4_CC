@@ -2,15 +2,20 @@
 title: "PartB CA4"
 author: "Conor Crean"
 date: "`r Sys.Date()`"
+<<<<<<< HEAD
 output:
   html_document:
     theme: readable
     toc: yes
     toc_float: yes
+=======
+output: html_document
+>>>>>>> 9e34d0450f37f6a35fcb5998ab5d7c42a6d70676
  
 ---
 * #### **Table Of Contents:**
 
+<<<<<<< HEAD
 ##### *Assumptions:*
 * *Linear Regression Analysis*
 * *Data Overview*
@@ -21,14 +26,25 @@ output:
 
 
 # **Assumptions**
+=======
+
+
+#Assumptions
+>>>>>>> 9e34d0450f37f6a35fcb5998ab5d7c42a6d70676
 The variables chosen include age and the average monthly hours of gaming.
 My assumption that as players age the less hours that they can dedicated to playing video games due to work and other commitments.
 
 
 
+<<<<<<< HEAD
 ### **Linear Regression Analysis**
 
 ```{r , echo=FALSE, include=FALSE}
+=======
+#Linear Regression Analysis
+##### *Data Overview*
+```{r , echo=FALSE}
+>>>>>>> 9e34d0450f37f6a35fcb5998ab5d7c42a6d70676
 #Library for graphs and data presentation loaded
 library(readr)
 library(tidyverse)
@@ -52,7 +68,11 @@ summary(daie_ca4_game_data)
 
 ```
 
+<<<<<<< HEAD
 ### **Histograms**
+=======
+#Histograms
+>>>>>>> 9e34d0450f37f6a35fcb5998ab5d7c42a6d70676
 ```{r , echo=FALSE}
 library('statsr')
 
@@ -61,8 +81,27 @@ hist(daie_ca4_game_data$avg_monthly_expenditure_dlc  )
 ```
 
 
+<<<<<<< HEAD
 
 ### **Checking Correlation coefficient of two variables**
+=======
+Variables:
+gender
+age
+top_reason_gaming
+gaming_platform
+favourite_game
+avg_monthly_hrs_gaming 
+avg_years_playing_games
+avg_monthly_expenditure_dlc
+ethnicity
+play_roblox
+use_steam
+
+
+
+#Checking Corralation cooefficent of two variables
+>>>>>>> 9e34d0450f37f6a35fcb5998ab5d7c42a6d70676
 ```{r , echo=FALSE}
 cor(daie_ca4_game_data$age, daie_ca4_game_data$avg_monthly_hrs_gaming)
 cor(daie_ca4_game_data$age, daie_ca4_game_data$avg_years_playing_games)
@@ -78,7 +117,11 @@ cor(daie_ca4_game_data$avg_monthly_hrs_gaming, daie_ca4_game_data$avg_monthly_ex
 
 
 
+<<<<<<< HEAD
 ### **Plotting data and creating linear regress model.**
+=======
+#Plotting data and creating linear regress model.
+>>>>>>> 9e34d0450f37f6a35fcb5998ab5d7c42a6d70676
 ```{r , echo=FALSE}
 plot_ss(age, avg_monthly_hrs_gaming, daie_ca4_game_data)
 
@@ -100,7 +143,11 @@ qqnorm(m1$residuals)
 qqline(m1$residuals)
 ```
 
+<<<<<<< HEAD
 ### **GGPlot of age and average monthly hours gaming**
+=======
+#GGPlot of age and average monthly hours gaming
+>>>>>>> 9e34d0450f37f6a35fcb5998ab5d7c42a6d70676
 ```{r , echo=FALSE}
 ggplot(daie_ca4_game_data,aes(age, avg_monthly_hrs_gaming)) +
   geom_point() +
