@@ -48,6 +48,7 @@ library(dplyr)
 
 
 
+<<<<<<< HEAD
 
 
 ```
@@ -56,6 +57,11 @@ library(dplyr)
 
 
 # Connect (and create) a new local SQLite DB
+=======
+# Connect (and create) a new local SQLite DB
+
+```{r}
+>>>>>>> 343a39fb288ff248170dc21280cb49350fbfd2d8
 
 ```{r}
 
@@ -67,6 +73,12 @@ library(dplyr)
 ```{r}
 
 
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> 343a39fb288ff248170dc21280cb49350fbfd2d8
 ```
 
 # Query and store the results
