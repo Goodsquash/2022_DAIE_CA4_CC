@@ -9,17 +9,27 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-
-
-
 ## Clear console on each execute and set chunk default to not show code
+
 ```{r}
 
 cat('\014')
+
+pacman::p_load(RSQLite)
+
+dbfile <- "daie_ca4_data.sqlite"
+if (file.exists(dbfile)){file.remove(dbfile)}
+
+
+ca4_db <- dbConnect(RSQLite:SQLite(), dbfile)
+
+
+
+
 ```
 
-
 ## Download and load libraries
+
 ```{r}
 if(!require("RMySQL"))
   install.packages("RMySQL")
@@ -37,47 +47,38 @@ library(readr)
 library(dplyr)
 
 
-```
 
+
+
+```
 
 
 
 
 # Connect (and create) a new local SQLite DB
-```{r}
 
-conn <- dbConnect(RSQLite::SQLite(), "daie_ca4_data.sqlite")
+```{r}
 
 
 ```
-
 
 # Test the DB
+
 ```{r}
 
 
-
-dbListTables(conn )
-dbListTables(conn,"Asset" )
-
 ```
-
-
 
 # Query and store the results
 
-
-
-
-
 # Execute a query with no result
+
 ```{r}
 
 result <- dbGetQuery(conn, "SELECT * FROM Asset ")
 result
 
 ```
-
 
 # Do NOT forget to disconnect - otherwise we may hit a remote connection limit
 
@@ -89,4 +90,3 @@ dbDisconnect(conn)
 
 
 ```
-
