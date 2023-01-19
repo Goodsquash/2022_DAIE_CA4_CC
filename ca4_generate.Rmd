@@ -11,53 +11,20 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Clear console on each execute and set chunk default to not show code
 
-```{r}
+```{r echo = FALSE}
 
-cat('\014')
-
-pacman::p_load(RSQLite)
-
-dbfile <- "daie_ca4_data.sqlite"
-if (file.exists(dbfile)){file.remove(dbfile)}
+cat("\014")
 
 
-ca4_db <- dbConnect(RSQLite:SQLite(), dbfile)
+library(pacman)
+pacman::p_load(dbplyr,RSQLite,rmarkdown)
 
+dbfile <- "daie_ca4_db.sqlite"
+if (file.exists(dbfile))
+  {file.remove(dbfile)
+}
 
-
-
-```
-
-## Download and load libraries
-
-```{r}
-if(!require("RMySQL"))
-  install.packages("RMySQL")
-if(!require("dplyr"))
-  install.packages("dplyr")
-if(!require("readr"))
-install.packages("readr")
-if(!require("DBI"))
-install.packages("DBI")
-
-
-library(DBI)
-library(RMySQL)
-library(readr)
-library(dplyr)
-
-
-
-
-
-```
-
-
-
-
-# Connect (and create) a new local SQLite DB
-
-```{r}
+daie_ca4_db <- dbConnect(RSQLite::SQLite(), dbfile)
 
 
 ```
@@ -66,27 +33,43 @@ library(dplyr)
 
 ```{r}
 
+return <- dbExecute(daie_ca4_db,"CREATE TABLE Groups (
+   id_number integer NOT NULL CONSTRAINT Group_pk PRIMARY KEY, Name varchar(50) NOT NULL")
+
+
+
+```
+#Add to database
+```{r echo = FALSE}
+
+return <- dbExecute(daie_ca4_db,"INSERT INTO Asset
+                    (id_number,Name )
+                    VALUE
+                    (1, 'Weapon')")
+return <- dbExecute(daie_ca4_db,"INSERT INTO Asset
+                    (id_number,Name )
+                    VALUE
+                    (2, 'Armour')")
+return <- dbExecute(daie_ca4_db,"INSERT INTO Asset
+                    (id_number,Name )
+                    VALUE
+                    (3, 'Picture')")
+return <- dbExecute(daie_ca4_db,"INSERT INTO Asset_for_Library
+                    (Asset_id_number,Library_id_number, )
+                    VALUE
+                    (3, 'Picture')")
 
 ```
 
-# Query and store the results
 
-# Execute a query with no result
-
-```{r}
-
-result <- dbGetQuery(conn, "SELECT * FROM Asset ")
-result
-
-```
 
 # Do NOT forget to disconnect - otherwise we may hit a remote connection limit
 
-```{r}
+```{r echo=FALSE}
 
 
 
-dbDisconnect(conn)
+dbDisconnect(daie_ca4_db)
 
 
 ```

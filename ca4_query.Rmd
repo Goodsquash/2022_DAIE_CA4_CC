@@ -39,3 +39,15 @@ library(dplyr)
 
 conn <- dbConnect(RSQLite::SQLite(), "")
 ```
+
+
+
+
+```{r}
+
+dbGetQuery(daie_ca4_db, "SELECT")
+
+
+
+```
+
