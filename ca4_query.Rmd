@@ -37,17 +37,30 @@ library(dplyr)
 # Connect (and create) a new local SQLite DB
 ```{r}
 
-conn <- dbConnect(RSQLite::SQLite(), "")
+daie_ca4_db <- dbConnect(RSQLite::SQLite(), "")
 ```
 
 
 
-
+Query the database
 ```{r}
 
-dbGetQuery(daie_ca4_db, "SELECT")
+dbGetQuery(daie_ca4_db, "SELECT
+           id_number
+           Name")
+
 
 
 
 ```
 
+
+# Disconnect from DB
+
+```{r echo=FALSE}
+
+
+dbDisconnect(daie_ca4_db)
+
+
+```
