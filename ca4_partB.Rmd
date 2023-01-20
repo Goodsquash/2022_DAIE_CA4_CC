@@ -18,7 +18,7 @@ output:
 * *Checking Correlation coefficient of two variables*
 * *Plotting data and creating linear regress model*
 * *GGPlot of age and average monthly hours gaming*
-
+* *Conclusion*
 
 # **Assumptions**
 The variables chosen include age and the average monthly hours of gaming.
@@ -108,3 +108,7 @@ ggplot(daie_ca4_game_data,aes(age, avg_monthly_hrs_gaming)) +
 
 
 ```
+
+### **Conclusion**
+The data shows that there is a decrease in the hours played monthly the older people get. This backs up my assumption that players have less time as they age to dedicate to playing games.
+

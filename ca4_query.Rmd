@@ -46,8 +46,13 @@ Query the database
 ```{r}
 
 dbGetQuery(daie_ca4_db, "SELECT
+<<<<<<< HEAD
            Name
           From Asset")
+=======
+           id_number
+           Name")
+>>>>>>> fb2c7d1c9f1d05d2859dd7708f3d436b9ff5a276
 
 
 
