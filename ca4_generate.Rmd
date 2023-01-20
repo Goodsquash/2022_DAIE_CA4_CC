@@ -10,7 +10,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ## Clear console on each execute and set chunk default to not show code
-
+# Connect (and create) a new local SQLite DB
 ```{r echo = FALSE}
 
 cat("\014")
@@ -24,10 +24,8 @@ if (file.exists(dbfile))
   {file.remove(dbfile)
 }
 
-<<<<<<< HEAD
-daie_ca4_db <- dbConnect(RSQLite::SQLite(), dbfile)
-=======
 
+daie_ca4_db <- dbConnect(RSQLite::SQLite(), dbfile)
 
 ```
 
@@ -51,7 +49,7 @@ library(dplyr)
 
 
 
-<<<<<<< HEAD
+
 
 
 ```
@@ -59,37 +57,23 @@ library(dplyr)
 
 
 
-# Connect (and create) a new local SQLite DB
-=======
-# Connect (and create) a new local SQLite DB
-
-```{r}
->>>>>>> 343a39fb288ff248170dc21280cb49350fbfd2d8
-
-```{r}
->>>>>>> f879ea11c655d3f5be577f38045c82ae66ffd71d
 
 
-```
 
 # Test the DB
 
 ```{r}
 
-<<<<<<< HEAD
+
 return <- dbExecute(daie_ca4_db,"CREATE TABLE Groups (
    id_number integer NOT NULL CONSTRAINT Group_pk PRIMARY KEY, Name varchar(50) NOT NULL")
 
 
 
-=======
-
-<<<<<<< HEAD
-=======
 
 
 
->>>>>>> 343a39fb288ff248170dc21280cb49350fbfd2d8
+
 ```
 
 # Query and store the results
@@ -101,7 +85,7 @@ return <- dbExecute(daie_ca4_db,"CREATE TABLE Groups (
 result <- dbGetQuery(conn, "SELECT * FROM Asset ")
 result
 
->>>>>>> f879ea11c655d3f5be577f38045c82ae66ffd71d
+
 ```
 #Add to database
 ```{r echo = FALSE}
