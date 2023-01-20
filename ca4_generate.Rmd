@@ -34,8 +34,6 @@ daie_ca4_db <- dbConnect(RSQLite::SQLite(), dbfile)
 ```{r}
 if(!require("RMySQL"))
   install.packages("RMySQL")
-if(!require("dplyr"))
-  install.packages("dplyr")
 if(!require("readr"))
 install.packages("readr")
 if(!require("DBI"))
@@ -45,28 +43,6 @@ install.packages("DBI")
 library(DBI)
 library(RMySQL)
 library(readr)
-library(dplyr)
-
-
-
-
-
-
-```
-
-
-
-
-
-
-
-# Test the DB
-
-```{r}
-
-
-return <- dbExecute(daie_ca4_db,"CREATE TABLE Groups (
-   id_number integer NOT NULL CONSTRAINT Group_pk PRIMARY KEY, Name varchar(50) NOT NULL")
 
 
 
@@ -75,18 +51,14 @@ return <- dbExecute(daie_ca4_db,"CREATE TABLE Groups (
 
 
 ```
+
+
+
+
 
 # Query and store the results
 
-# Execute a query with no result
 
-```{r}
-
-result <- dbGetQuery(conn, "SELECT * FROM Asset ")
-result
-
-
-```
 #Add to database
 ```{r echo = FALSE}
 
@@ -111,7 +83,7 @@ return <- dbExecute(daie_ca4_db,"INSERT INTO Asset_for_Library
 
 
 
-# Do NOT forget to disconnect - otherwise we may hit a remote connection limit
+# Disconnect from DB
 
 ```{r echo=FALSE}
 
